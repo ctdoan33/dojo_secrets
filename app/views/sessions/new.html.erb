@@ -3,7 +3,7 @@
 <%= error %>
 <% end %>
 <% end %>
-<form action="/sessions/create" method="post">
+<form action="/sessions/new" method="post">
 	<input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
 	<label for="Email">Email</label>
 	<input type="text" name="Email">
