@@ -5,7 +5,11 @@ Rails.application.routes.draw do
 
   get "users/:id" => "users#show"
 
-  get 'users/edit'
+  get "users/:id/edit" => "users#edit"
+
+  patch "users/:id/edit" => "users#update"
+
+  delete "users/:id" => "users#destroy"
 
   get 'sessions/new'
 
