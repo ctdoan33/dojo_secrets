@@ -42,7 +42,7 @@ class UsersController < ApplicationController
 			params.require(:user).permit(:name, :email)
 		end
 		def require_user_match
-			unless params[:id] == session[:user_id]
+			unless params[:id].to_i == session[:user_id]
 				redirect_to "/sessions/new"
 			end
 		end
