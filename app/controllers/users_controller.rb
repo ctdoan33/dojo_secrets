@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
 	skip_before_action :require_login, only: [:new, :create]
+	before_action :require_user_match, except: [:new, :create]
 	def new
 	end
 
@@ -39,5 +40,10 @@ class UsersController < ApplicationController
 		end
 		def update_params
 			params.require(:user).permit(:name, :email)
+		end
+		def require_user_match
+			unless params[:id] == session[:user_id]
+				redirect_to "/sessions/new"
+			end
 		end
 end
