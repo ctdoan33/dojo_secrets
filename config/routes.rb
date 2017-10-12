@@ -1,4 +1,8 @@
 Rails.application.routes.draw do
+  post "secrets/:secret_id/likes/new" => "likes#create"
+
+  delete "secrets/:secret_id/likes/:id" => "likes#destroy"
+
   get "secrets" => "secrets#index"
 
   post "secrets/new" => "secrets#create"
