@@ -1,2 +1,22 @@
 <h1>Welcome, <%= current_user.name %></h1>
 <a href="/users/<%= current_user.id %>/edit">Edit Profile</a>
+<h2>New Secret</h2>
+<% if flash[:errors] %>
+<% flash[:errors].each do |error| %>
+<%= error %>
+<% end %>
+<% end %>
+<form action="/secrets/new" method="post">
+	<input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+	<textarea name="content"></textarea>
+	<input type="submit" value="Create Secret">
+</form>
+<h2>Secrets</h2>
+<% @secrets.each do |secret| %>
+<%= secret.content %>
+<form action="/secrets/<%= secret.id %>" method="post">
+	<input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+	<input type="hidden" name="_method" value="delete">
+	<input type="submit" value="Delete">
+</form>
+<% end %>

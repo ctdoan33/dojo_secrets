@@ -3,6 +3,7 @@ class UsersController < ApplicationController
 	end
 
 	def show
+		@secrets = Secret.joins(:user).where("users.id = #{current_user.id}")
 	end
 
 	def create
